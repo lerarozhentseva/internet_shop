@@ -1,0 +1,11 @@
+export const MAINSHOP_ROUTE = '/';
+export const LOGIN_ROUTE = '/login';
+export const REGISTRATION_ROUTE = '/registration';
+export const BASKET_ROUTE = '/basket';
+export const DEVICE_ROUTE = '/device';
+export const PRIVATE_ROOM_ROUTE = '/private';
+export const CONTACTS = '/contacts';
+export const PAY_DELIVERY = '/delivery';
+export const BRANDS = '/brands';
+export const DEVICES_ROUTE = '/devices';
+export const ERROR = '*';

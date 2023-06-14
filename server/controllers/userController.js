@@ -7,6 +7,15 @@ const generateJwt = (id, email, role) => {
   return jwt.sign({id, email, role}, process.env.SECRET_KEY, {expiresIn: '24h'})
 }
 
+const verifyToken = (token) => {
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    return decoded;
+  } catch (error) {
+    throw new Error('Invalid token');
+  }
+};
+
 class UserController {
   async registration(req, res, next) {
     const {email, password, role} = req.body;
@@ -41,6 +50,13 @@ class UserController {
   async check(req, res, next) {
     const token = generateJwt(req.user.id, req.user.email, req.user.role)
     return res.json({token})
+  }
+
+  getUserId(req, res, next) {
+    const token = req.headers.authorization; // Получение токена из заголовков запроса
+    const decoded = verifyToken(localStorage.getItem('token')); // Декодирование токена
+    const userId = decoded.id; // Извлечение userId из декодированных данных
+    return userId;
   }
 }
 

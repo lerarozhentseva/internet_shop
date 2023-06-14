@@ -1,0 +1,12 @@
+.slide {
+    width: 1200px;
+    margin: 40px auto;
+    height: 320px;
+}
+
+.slideItem {
+    height: 300px;
+    width: 900px;
+    margin: 0 auto;
+    border-radius: 30px;
+}

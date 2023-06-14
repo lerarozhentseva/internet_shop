@@ -1,4 +1,4 @@
-const {Type} = require('../models/models');
+const {Type, Device, Brand} = require('../models/models');
 const ApiError = require('../error/ApiError');
 
 class TypeController {
@@ -26,6 +26,18 @@ class TypeController {
       return res.json({message: 'Type deleted successfully'});
     } catch (error) {
       return res.status(500).json({message: 'Error deleting type', error: error.message});
+    }
+  }
+
+  async getBrandsByType(req, res) {
+    const {id} = req.params;
+    try {
+      const brands = await Brand.findAll({
+        where: {typeId: id}
+      });
+      return res.json(brands);
+    } catch (err) {
+      return res.status(500).json({message: 'Error retrieving BRAND by type', error: err.message})
     }
   }
 }
